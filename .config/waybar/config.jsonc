@@ -1,0 +1,36 @@
+// -*- mode: jsonc -*-
+{
+    "position": "top",
+    "height": 0,
+    "spacing": 4,
+    "margin-top": 0,
+    "margin-bottom": 0,
+    "margin-left": 10,
+    "margin-right": 10,
+    "output": "eDP-1",
+    /////////////////////////////////////////
+    "modules-left": [
+        "clock",
+        "custom/weather",
+        "hyprland/workspaces"
+    ],
+    "modules-center": [
+        "custom/music"
+    ],
+    "modules-right": [
+        "group/system",
+        "custom/notifications"
+    ],
+    /////////////////////////////////////////
+    "include": [
+        "modules.jsonc"
+    ],
+    "group/system": {
+        "orientation": "horizontal",
+        "modules": [
+            "pulseaudio",
+            "network",
+            "battery"
+        ]
+    },
+}

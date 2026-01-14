@@ -1,0 +1,118 @@
+@import "colors.css";
+
+* {
+    font-family: "JetBrains Mono Nerd Font Propo";
+    font-size: 1rem;
+    font-weight: bold;
+    min-height: 0;
+    font-size: 100%;
+    border-radius: 1.5rem;
+}
+
+window#waybar {
+    background: transparent;
+}
+
+tooltip {
+    background-color: @background;
+    padding: 0.25rem;
+    color: @secondary;
+    border-radius: 1.5rem;
+    border: 1px solid @outline_variant;
+}
+
+tooltip label {
+    font-weight: bold;
+    color: @on_surface_variant;
+}
+
+/* Standard module styling */
+#clock,
+#custom-weather,
+#system,
+#custom-notifications,
+#custom-music {
+    background: @surface_container;
+    color: @on_surface_variant;
+    padding: 0.4rem 0.9rem;
+    margin: 5px 0.15rem 0 0.15rem;
+    transition: color 0.3s ease;
+}
+
+/* Make icon only modules font bigger*/
+#custom-notifications,
+#custom-notifications:hover {
+    font-size: 1.15rem;
+}
+
+/* Hover effect on clickable modules*/
+#clock:hover,
+#custom-notifications:hover,
+#pulseaudio:hover,
+#network:hover,
+#custom-music:hover {
+    color: @surface_tint;
+    transition: color 0.3s ease;
+}
+
+
+#custom-music.paused {
+    background: @surface_container;
+    color: @outline;
+}
+
+#custom-music.paused:hover {
+    color: @surface_tint;
+}
+
+
+/* Workspaces module styling */
+#workspaces {
+    padding: 0.5rem 0.5rem;
+    border-radius: 1.5rem;
+    background-color: @surface_container;
+    margin: 5px 0.15rem 0 0.15rem;
+}
+
+#workspaces button {
+    margin: 0;
+    padding: 0px 4px;
+    min-width: 20px;
+    color: @outline;
+    background: transparent;
+    box-shadow: none;
+    text-shadow: none;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.5s cubic-bezier(.55, -0.68, .48, 1.682);
+    border: none;
+}
+
+#workspaces button:hover {
+    color: @surface_tint;
+}
+
+#workspaces button.active {
+    min-width: 28px;
+    background: @surface_variant;
+    color: @on_surface_variant;
+}
+
+#battery.warning {
+    color: #FFD54F;
+}
+
+#battery.critical {
+    color: #FF867C;
+}
+
+#battery.plugged {
+    color: @surface_tint;
+}
+
+#battery.charging {
+    color: #81C784;
+}
+
+#battery.plugged {
+    color: #64B5F6;
+}
