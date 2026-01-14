@@ -1,11 +1,11 @@
 @import "colors.css";
 
+/* --- Global Settings --- */
 * {
     font-family: "JetBrains Mono Nerd Font Propo";
-    font-size: 1rem;
+    font-size: 100%;
     font-weight: bold;
     min-height: 0;
-    font-size: 100%;
     border-radius: 1.5rem;
 }
 
@@ -13,39 +13,53 @@ window#waybar {
     background: transparent;
 }
 
+/* --- Tooltips --- */
 tooltip {
     background-color: @background;
     padding: 0.25rem;
     color: @secondary;
-    border-radius: 1.5rem;
     border: 1px solid @outline_variant;
 }
 
 tooltip label {
-    font-weight: bold;
     color: @on_surface_variant;
 }
 
-/* Standard module styling */
+/* --- Common Module Styles --- */
 #clock,
 #custom-weather,
 #system,
 #custom-notifications,
-#custom-music {
+#custom-music,
+#custom-updates {
     background: @surface_container;
     color: @on_surface_variant;
     padding: 0.4rem 0.9rem;
     margin: 5px 0.15rem 0 0.15rem;
-    transition: color 0.3s ease;
 }
 
-/* Make icon only modules font bigger*/
-#custom-notifications,
-#custom-notifications:hover {
+/* Module-specific overrides */
+#custom-notifications {
     font-size: 1.15rem;
 }
 
-/* Hover effect on clickable modules*/
+#custom-music {
+    font-style: italic;
+}
+
+#custom-updates.updated {
+    padding: 0;
+    margin: 0;
+    min-width: 0;
+    min-height: 0;
+    font-size: 0;
+    border: none;
+    background: transparent;
+}
+
+/* --- Hover Effects --- */
+/* Note: Transition on hover ensures smooth fade-in. 
+   Pulse/Network rely on this for transition as they lack a base block above. */
 #clock:hover,
 #custom-notifications:hover,
 #pulseaudio:hover,
@@ -55,7 +69,7 @@ tooltip label {
     transition: color 0.3s ease;
 }
 
-
+/* --- Custom Music States --- */
 #custom-music.paused {
     background: @surface_container;
     color: @outline;
@@ -65,26 +79,24 @@ tooltip label {
     color: @surface_tint;
 }
 
-
-/* Workspaces module styling */
+/* --- Workspaces --- */
 #workspaces {
-    padding: 0.5rem 0.5rem;
-    border-radius: 1.5rem;
+    padding: 0.5rem;
     background-color: @surface_container;
     margin: 5px 0.15rem 0 0.15rem;
 }
 
 #workspaces button {
     margin: 0;
-    padding: 0px 4px;
+    padding: 0 4px;
     min-width: 20px;
     color: @outline;
     background: transparent;
+    border: none;
     box-shadow: none;
     text-shadow: none;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.5s cubic-bezier(.55, -0.68, .48, 1.682);
-    border: none;
 }
 
 #workspaces button:hover {
@@ -97,6 +109,7 @@ tooltip label {
     color: @on_surface_variant;
 }
 
+/* --- Battery States --- */
 #battery.warning {
     color: #FFD54F;
 }
@@ -106,13 +119,9 @@ tooltip label {
 }
 
 #battery.plugged {
-    color: @surface_tint;
+    color: #64B5F6;
 }
 
 #battery.charging {
     color: #81C784;
-}
-
-#battery.plugged {
-    color: #64B5F6;
 }

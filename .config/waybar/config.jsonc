@@ -18,6 +18,7 @@
         "custom/music"
     ],
     "modules-right": [
+        "custom/updates",
         "group/system",
         "custom/notifications"
     ],
