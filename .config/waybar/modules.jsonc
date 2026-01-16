@@ -70,15 +70,15 @@
         "markup": "pango"
     },
     "custom/updates": {
-        "format": "  {text}",
+        "format": " {text}",
         "return-type": "json",
         "exec-if": "which waybar-module-pacman-updates",
-        "exec": "waybar-module-pacman-updates --interval-seconds 1800 --network-interval-seconds 3600 --no-zero-output --color-semver-updates",
+        "exec": "waybar-module-pacman-updates --interval-seconds 10 --network-interval-seconds 3600 --no-zero-output --color-semver-updates",
         "on-click": "kitty -e sh -c 'pikaur -Syu; echo Done - Press Enter to exit; read'",
     },
     "pulseaudio": {
-        "format": "{icon} ",
-        "format-bluetooth": "{icon} ",
+        "format": "{icon}",
+        "format-bluetooth": "{icon}",
         "format-muted": "",
         "format-icons": {
             "headphone": "",
@@ -96,9 +96,9 @@
     },
     "network": {
         "format": "{ifname}",
-        "format-wifi": "{icon} ",
-        "format-ethernet": "󰌘 ",
-        "format-disconnected": "󰌙 ",
+        "format-wifi": "{icon}",
+        "format-ethernet": "󰌘",
+        "format-disconnected": "󰌙",
         "tooltip-format": "{ipaddr}  {bandwidthUpBits}  {bandwidthDownBits}",
         "format-linked": "󰈁 {ifname} (No IP)",
         "tooltip-format-wifi": "{essid} {icon} {signalStrength}%\n{ipaddr}",

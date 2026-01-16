@@ -57,6 +57,10 @@ tooltip label {
     background: transparent;
 }
 
+#system * {
+    margin: 0 0.4rem;
+}
+
 /* --- Hover Effects --- */
 /* Note: Transition on hover ensures smooth fade-in. 
    Pulse/Network rely on this for transition as they lack a base block above. */
