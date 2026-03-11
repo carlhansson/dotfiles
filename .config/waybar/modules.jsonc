@@ -1,140 +1,116 @@
 {
-    // "custom/System": {
-    //     "tooltip": false,
-    //     "format": "",
-    //     "on-click": "setsid ~/.config/RofiScripts/Launcher/Launcher.sh"
-    // },
-    "custom/notifications": {
-        "tooltip": true,
-        "format": "{icon}",
-        "format-icons": {
-            "notification": "󱅫",
-            "none": "󰂜",
-            "dnd-notification": "󰂠",
-            "dnd-none": "󰪓",
-            "inhibited-notification": "󰂛",
-            "inhibited-none": "󰪑",
-            "dnd-inhibited-notification": "󰂛",
-            "dnd-inhibited-none": "󰪑"
-        },
-        "return-type": "json",
-        "exec-if": "which swaync-client",
-        "exec": "swaync-client -swb",
-        "on-click": "swaync-client -t -sw",
-        "on-click-right": "swaync-client -d -sw",
-        "on-click-middle": "swaync-client -R; swaync-client -rs",
-        "escape": true
+  "custom/notifications": {
+    "tooltip": true,
+    "format": "{icon}",
+    "format-icons": {
+      "notification": "󱅫",
+      "none": "󰂜",
+      "dnd-notification": "󰂠",
+      "dnd-none": "󰪓",
+      "inhibited-notification": "󰂛",
+      "inhibited-none": "󰪑",
+      "dnd-inhibited-notification": "󰂛",
+      "dnd-inhibited-none": "󰪑",
     },
-    "clock": {
-        "tooltip": false,
-        "format": " {:%H:%M}",
-        "format-alt": "󰸗 {:L%a %Y/%m/%d}"
+    "return-type": "json",
+    "exec-if": "which swaync-client",
+    "exec": "swaync-client -swb",
+    "on-click": "swaync-client -t -sw",
+    "on-click-right": "swaync-client -d -sw",
+    "on-click-middle": "swaync-client -R; swaync-client -rs",
+    "escape": true,
+  },
+  "clock": {
+    "tooltip": false,
+    "format": " {:%H:%M}",
+    "format-alt": "󰸗 {:L%a %Y/%m/%d}",
+  },
+  "custom/weather": {
+    "format": "{}°",
+    "tooltip": true,
+    "interval": 900,
+    "exec": "~/.config/waybar/scripts/get_weather.sh",
+    "return-type": "json",
+  },
+  "hyprland/workspaces": {
+    "active-only": false,
+    "all-outputs": true,
+    "format": "{icon}",
+    "show-special": false,
+    "on-click": "activate",
+    "on-scroll-up": "hyprctl dispatch workspace e+1",
+    "on-scroll-down": "hyprctl dispatch workspace e-1",
+    "persistent-workspaces": {
+      "*": 5,
     },
-    "custom/weather": {
-        "format": "{}°",
-        "tooltip": true,
-        "interval": 900,
-        "exec": "~/.config/waybar/scripts/get_weather.sh",
-        "return-type": "json"
+    "format-icons": {
+      "1": "A",
+      "2": "B",
+      "3": "C",
+      "4": "D",
+      "5": "E",
+      "6": "F",
+      "7": "G",
+      "8": "H",
+      "9": "I",
+      "10": "J",
     },
-    "hyprland/workspaces": {
-        "active-only": false,
-        "all-outputs": true,
-        "format": "{icon}",
-        "show-special": false,
-        "on-click": "activate",
-        "on-scroll-up": "hyprctl dispatch workspace e+1",
-        "on-scroll-down": "hyprctl dispatch workspace e-1",
-        "persistent-workspaces": {
-            "*": 5
-        },
-        "format-icons": {
-            "1": "A",
-            "2": "B",
-            "3": "C",
-            "4": "D",
-            "5": "E",
-            "6": "F",
-            "7": "G",
-            "8": "H",
-            "9": "I",
-            "10": "J",
-        },
+  },
+  "custom/music": {
+    "format": "{}",
+    "return-type": "json",
+    "exec": "waybar-module-music --whitelist spotify --whitelist feishin -a 20 --ellipsis --format ' %icon% %artist% - %title%'",
+    "on-click": "~/.config/waybar/scripts/music_control.sh",
+    "on-click-right": "playerctl -p $(cat /tmp/last-music-player 2>/dev/null) next",
+    "markup": "pango",
+  },
+  "custom/updates": {
+    "format": " {text}",
+    "return-type": "json",
+    "exec-if": "which waybar-module-pacman-updates",
+    "exec": "waybar-module-pacman-updates --interval-seconds 10 --network-interval-seconds 3600 --no-zero-output --color-semver-updates 'ff4000,ff8c00,00d17a,00cbe6,bbc3c4'",
+    "on-click": "kitty -e sh -c 'pikaur -Syu; echo Done - Press Enter to exit; read'",
+  },
+  "pulseaudio": {
+    "format": "{icon}",
+    "format-bluetooth": "{icon}",
+    "format-muted": "",
+    "format-icons": {
+      "headphone": "",
+      "headset": "",
+      "default": ["", "", ""],
     },
-    "custom/music": {
-        "format": "{}",
-        "return-type": "json",
-        "exec": "waybar-module-music --whitelist spotify -a 20 --ellipsis --format ' %icon% %artist% - %title%'",
-        "on-click": "playerctl -p spotify play-pause",
-        "on-click-right": "playerctl -p spotify next",
-        "markup": "pango"
+    "on-click": "pavucontrol",
+    "ignored-sinks": ["Easy Effects Sink"],
+  },
+  "network": {
+    "format": "{ifname}",
+    "format-wifi": "{icon}",
+    "format-ethernet": "󰌘",
+    "format-disconnected": "󰌙",
+    "tooltip-format": "{ipaddr}  {bandwidthUpBits}  {bandwidthDownBits}",
+    "format-linked": "󰈁 {ifname} (No IP)",
+    "tooltip-format-wifi": "{essid} {icon} {signalStrength}%\n{ipaddr}",
+    "tooltip-format-ethernet": "{ifname} 󰌘\n{ipaddr}",
+    "tooltip-format-disconnected": "󰌙 Disconnected",
+    "max-length": 30,
+    "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
+    //"on-click-right": "$HOME/.config/hypr/scripts/WaybarScripts.sh --nmtui"
+  },
+  "backlight": {
+    "format": "{icon}",
+    "format-icons": ["󰃞", "󰃟", "󰃝", "󰃠"],
+    "tooltip-format": "{percent}%",
+  },
+  "battery": {
+    "interval": 60,
+    "states": {
+      "warning": 25,
+      "critical": 10,
     },
-    "custom/updates": {
-        "format": " {text}",
-        "return-type": "json",
-        "exec-if": "which waybar-module-pacman-updates",
-        "exec": "waybar-module-pacman-updates --interval-seconds 10 --network-interval-seconds 3600 --no-zero-output --color-semver-updates",
-        "on-click": "kitty -e sh -c 'pikaur -Syu; echo Done - Press Enter to exit; read'",
-    },
-    "pulseaudio": {
-        "format": "{icon}",
-        "format-bluetooth": "{icon}",
-        "format-muted": "",
-        "format-icons": {
-            "headphone": "",
-            "headset": "",
-            "default": [
-                "",
-                "",
-                ""
-            ]
-        },
-        "on-click": "pavucontrol",
-        "ignored-sinks": [
-            "Easy Effects Sink"
-        ]
-    },
-    "network": {
-        "format": "{ifname}",
-        "format-wifi": "{icon}",
-        "format-ethernet": "󰌘",
-        "format-disconnected": "󰌙",
-        "tooltip-format": "{ipaddr}  {bandwidthUpBits}  {bandwidthDownBits}",
-        "format-linked": "󰈁 {ifname} (No IP)",
-        "tooltip-format-wifi": "{essid} {icon} {signalStrength}%\n{ipaddr}",
-        "tooltip-format-ethernet": "{ifname} 󰌘\n{ipaddr}",
-        "tooltip-format-disconnected": "󰌙 Disconnected",
-        "max-length": 30,
-        "format-icons": [
-            "󰤯",
-            "󰤟",
-            "󰤢",
-            "󰤥",
-            "󰤨"
-        ],
-        //"on-click-right": "$HOME/.config/hypr/scripts/WaybarScripts.sh --nmtui"
-    },
-    "battery": {
-        "interval": 60,
-        "states": {
-            "warning": 25,
-            "critical": 10
-        },
-        "format": "{icon} {capacity}%",
-        "format-icons": [
-            "󰂎",
-            "󰁺",
-            "󰁻",
-            "󰁼",
-            "󰁽",
-            "󰁾",
-            "󰁿",
-            "󰂀",
-            "󰂁",
-            "󰂂",
-            "󰁹"
-        ],
-        "format-charging": " {capacity}%",
-        "format-plugged": " {capacity}%"
-    }
+    "format": "{icon} {capacity}%",
+    "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+    "format-charging": " {capacity}%",
+    "format-plugged": " {capacity}%",
+  },
 }
