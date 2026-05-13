@@ -457,7 +457,7 @@
         "firstDayOfWeek": 1,
         "hideWeatherCityName": false,
         "hideWeatherTimezone": false,
-        "name": "Stockholm",
+        "name": "",
         "showCalendarEvents": true,
         "showCalendarWeather": true,
         "showWeekNumberInCalendar": false,
@@ -648,10 +648,6 @@
             {
                 "enabled": true,
                 "id": "hyprtoolkit"
-            },
-            {
-                "enabled": true,
-                "id": "hyprland"
             }
         ],
         "enableUserTheming": true
