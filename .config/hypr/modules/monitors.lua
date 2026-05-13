@@ -21,15 +21,6 @@ hl.monitor({
     max_luminance = 400,
 })
 
--- hl.monitor({
---     output = "eDP-1",
---     mode = "2880x1800@120",
---     position = "0x0",
---     scale = 1.8,
---     icc = "/home/carl/.config/hypr/shaders/profile.icm",
---     bitdepth = 10,
--- })
-
 hl.config({
     render = {
         cm_auto_hdr = 1,

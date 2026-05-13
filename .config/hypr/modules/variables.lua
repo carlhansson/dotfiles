@@ -1,7 +1,7 @@
 local M = {}
 
 function M.app(name)
-    return "app2unit -- " .. name
+    return "runapp -- " .. name
 end
 
 return M

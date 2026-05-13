@@ -43,7 +43,7 @@ hl.config({
             enabled           = true,
             size              = 3,
             passes            = 1,
-            vibrancy          = 0.1696,
+            vibrancy          = 0,
             new_optimizations = true,
             ignore_opacity    = false,
             special           = false,
