@@ -648,6 +648,7 @@
             {
                 "enabled": true,
                 "id": "hyprtoolkit"
+<<<<<<< HEAD
             },
             {
                 "enabled": true,
@@ -656,9 +657,11 @@
             {
                 "enabled": true,
                 "id": "hyprland"
+=======
+>>>>>>> e90899c (add foot theme to noctalia)
             }
         ],
-        "enableUserTheming": false
+        "enableUserTheming": true
     },
     "ui": {
         "boxBorderEnabled": false,
