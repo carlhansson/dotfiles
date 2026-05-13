@@ -53,7 +53,9 @@ hl.window_rule({
     match = { class = "qalc-float" },
     float = true,
     size = "600 400",
+    move = "10 monitor_h-400-10",
     center = true,
+    pin = true,
 })
 
 hl.window_rule({
