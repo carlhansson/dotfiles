@@ -14,7 +14,7 @@
         "enableSessionSearch": true,
         "enableSettingsSearch": true,
         "enableWindowsSearch": true,
-        "iconMode": "tabler",
+        "iconMode": "native",
         "ignoreMouseInput": false,
         "overviewLayer": true,
         "pinnedApps": [
@@ -22,9 +22,9 @@
         "position": "center",
         "screenshotAnnotationTool": "",
         "showCategories": true,
-        "showIconBackground": false,
+        "showIconBackground": true,
         "sortByMostUsed": true,
-        "terminalCommand": "foot -e",
+        "terminalCommand": "foot",
         "viewMode": "list"
     },
     "audio": {
@@ -143,7 +143,7 @@
                 {
                     "defaultSettings": {
                         "aurCmd": "paru -Qua 2>/dev/null",
-                        "aurHomepageCmd": "paru -Si {id} 2>/dev/null | awk 'FNR == 5 {print $3}'",
+                        "aurHomepageCmd": "LC_ALL=C paru -Si {id} 2>/dev/null | awk '/^URL/ {print $3}'",
                         "boldText": true,
                         "boldVer": true,
                         "boldVerDesktop": true,
@@ -438,11 +438,11 @@
         "wallpaperChange": ""
     },
     "idle": {
-        "customCommands": "[]",
-        "enabled": false,
-        "fadeDuration": 5,
+        "customCommands": "[{\"name\":\"Set brightness 10%\",\"timeout\":150,\"command\":\"brightnessctl -s set 10%\",\"resumeCommand\":\"brightnessctl -r\"},{\"name\":\"Turn off keyboard backlight\",\"timeout\":150,\"command\":\"brightnessctl -sd rgb:kbd_backlight set 0\",\"resumeCommand\":\"brightnessctl -rd rgb:kbd_backlight\"}]",
+        "enabled": true,
+        "fadeDuration": 3,
         "lockCommand": "",
-        "lockTimeout": 660,
+        "lockTimeout": 330,
         "resumeLockCommand": "",
         "resumeScreenOffCommand": "",
         "resumeSuspendCommand": "",
@@ -460,7 +460,7 @@
         "name": "",
         "showCalendarEvents": true,
         "showCalendarWeather": true,
-        "showWeekNumberInCalendar": false,
+        "showWeekNumberInCalendar": true,
         "use12hourFormat": false,
         "useFahrenheit": false,
         "weatherEnabled": true,
@@ -523,13 +523,14 @@
         }
     },
     "osd": {
-        "autoHideMs": 2000,
+        "autoHideMs": 1500,
         "backgroundOpacity": 1,
         "enabled": true,
         "enabledTypes": [
             0,
             1,
-            2
+            2,
+            3
         ],
         "location": "top_right",
         "monitors": [
