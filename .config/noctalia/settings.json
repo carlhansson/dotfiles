@@ -300,9 +300,6 @@
                     "id": "Bluetooth"
                 },
                 {
-                    "id": "WallpaperSelector"
-                },
-                {
                     "id": "PowerProfile"
                 }
             ],
@@ -439,7 +436,7 @@
     },
     "idle": {
         "customCommands": "[{\"name\":\"Set brightness 10%\",\"timeout\":150,\"command\":\"brightnessctl -s set 10%\",\"resumeCommand\":\"brightnessctl -r\"},{\"name\":\"Turn off keyboard backlight\",\"timeout\":150,\"command\":\"brightnessctl -sd rgb:kbd_backlight set 0\",\"resumeCommand\":\"brightnessctl -rd rgb:kbd_backlight\"}]",
-        "enabled": true,
+        "enabled": false,
         "fadeDuration": 3,
         "lockCommand": "",
         "lockTimeout": 330,
@@ -457,7 +454,7 @@
         "firstDayOfWeek": 1,
         "hideWeatherCityName": false,
         "hideWeatherTimezone": false,
-        "name": "",
+        "name": "Stockholm",
         "showCalendarEvents": true,
         "showCalendarWeather": true,
         "showWeekNumberInCalendar": true,
@@ -690,7 +687,7 @@
         "skipStartupTransition": false,
         "solidColor": "#1a1a2e",
         "sortOrder": "name",
-        "transitionDuration": 1000,
+        "transitionDuration": 1500,
         "transitionEdgeSmoothness": 0.05,
         "transitionType": [
             "fade"
