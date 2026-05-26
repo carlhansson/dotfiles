@@ -368,7 +368,7 @@
         "clockFormat": "hh\\nmm",
         "clockStyle": "custom",
         "compactLockScreen": true,
-        "dimmerOpacity": 0.2,
+        "dimmerOpacity": 0.4,
         "enableBlurBehind": true,
         "enableLockScreenCountdown": true,
         "enableLockScreenMediaControls": false,
@@ -454,7 +454,7 @@
         "firstDayOfWeek": 1,
         "hideWeatherCityName": false,
         "hideWeatherTimezone": false,
-        "name": "Stockholm",
+        "name": "Bromma",
         "showCalendarEvents": true,
         "showCalendarWeather": true,
         "showWeekNumberInCalendar": true,
@@ -466,7 +466,7 @@
     },
     "network": {
         "bluetoothAutoConnect": true,
-        "bluetoothDetailsViewMode": "grid",
+        "bluetoothDetailsViewMode": "list",
         "bluetoothHideUnnamedDevices": false,
         "bluetoothRssiPollIntervalMs": 60000,
         "bluetoothRssiPollingEnabled": false,
@@ -532,7 +532,7 @@
         "location": "top_right",
         "monitors": [
         ],
-        "overlayLayer": true
+        "overlayLayer": false
     },
     "plugins": {
         "autoUpdate": true,
