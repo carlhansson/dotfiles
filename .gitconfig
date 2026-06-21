@@ -1,7 +1,7 @@
 [user]
 	email = carlhansson677@gmail.com
 	name = Carl Hansson
-	signingkey = /home/carl/.ssh/id_ed25519.pub
+	signingkey = /home/carl/.ssh/id_ed25519_sign.pub
 [gpg]
 	format = ssh
 [commit]
