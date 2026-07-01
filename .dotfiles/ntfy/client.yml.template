@@ -1,0 +1,15 @@
+default-host: https://ntfy.hesperia.dev
+default-user: ${NTFY_USER}
+default-token: ${NTFY_TOKEN}
+
+subscribe:
+  - topic: seerr
+    command: 'notify-send -i dialog-information "$title" "$message"'
+  - topic: komodo
+    command: 'notify-send -u critical "$title" "$message"'
+  - topic: homelab
+    command: >-
+      (CLICK=$(echo "$NTFY_RAW" | grep -oP '"click":"[^"]*"' | cut -d'"' -f4);
+      ACTION=$(notify-send -a "Homelab" -i $HOME/.local/share/icons/renovate.png
+      --action="default=Open PR" "$title" "$message");
+      [ "$ACTION" = "default" ] && [ -n "$CLICK" ] && xdg-open "$CLICK") &
