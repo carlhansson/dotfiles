@@ -2,6 +2,7 @@ if status is-interactive
     alias code="cursor"
     alias dotfiles='/usr/bin/git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME"'
     alias tree="tree -C "
+    set fish_greeting
 end
 # Default Editor/Diff (for paru, pacdiff, git, etc.)
 set -gx EDITOR "nvim"
