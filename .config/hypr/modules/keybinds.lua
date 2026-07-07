@@ -5,7 +5,7 @@ local vars = require("modules.variables")
 local mod = "SUPER"
 local ipc = "qs -c noctalia-shell ipc call"
 local terminal = "foot"
-local fileManager = "dolphin"
+local fileManager = "yazi"
 
 -- 1. Applications
 hl.bind(mod .. " + Q", hl.dsp.exec_cmd(vars.app(terminal)), { description = "Terminal" })
