@@ -1,5 +1,7 @@
 -- Load plugin modules in order.
 
+function gh(repo) return 'https://github.com/' .. repo end
+
 require 'plugins.guess-indent'
 require 'plugins.gitsigns'
 require 'plugins.which-key'
@@ -24,8 +26,6 @@ require 'plugins.treesitter'
 -- require 'plugins.debug'
 -- require 'plugins.indent_line'
 -- require 'plugins.lint'
-require 'plugins.autopairs'
--- require 'plugins.neo-tree'
--- require 'plugins.gitsigns' -- adds gitsigns recommended keymaps
 require 'plugins.oil'
+
 -- vim: ts=2 sts=2 sw=2 et
