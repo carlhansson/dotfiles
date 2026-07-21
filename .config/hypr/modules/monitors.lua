@@ -24,7 +24,7 @@ hl.monitor({
 hl.config({
     render = {
         cm_auto_hdr = 1,
-        direct_scanout = true,
+        direct_scanout = 2,
     },
     xwayland = {
         force_zero_scaling = true,
