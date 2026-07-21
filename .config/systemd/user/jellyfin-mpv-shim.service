@@ -1,12 +1,13 @@
-# ~/.config/systemd/user/jellyfin-mpv-shim.service
 [Unit]
-Description=Jellyfin MPV Shim
-After=graphical-session.target
+Description=Jellyfin MPV Shim cast client
+After=graphical-session.target network-online.target
+PartOf=graphical-session.target
 
 [Service]
-ExecStart=/usr/bin/jellyfin-mpv-shim
+Type=simple
+ExecStart=/usr/sbin/jellyfin-mpv-shim
 Restart=on-failure
-RestartSec=5
+RestartSec=10
 
 [Install]
-WantedBy=default.target
+WantedBy=graphical-session.target
