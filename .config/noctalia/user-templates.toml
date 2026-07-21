@@ -7,3 +7,7 @@ output_path = "~/.config/foot/themes/foot"
 [templates.hyprland]
 input_path = "~/.config/noctalia/templates/hyprland.lua"
 output_path = "~/.config/hypr/modules/colors.lua"
+
+[templates.yazi]
+input_path = "~/.config/noctalia/templates/yazi.toml"
+output_path = "~/.config/yazi/theme.toml"
