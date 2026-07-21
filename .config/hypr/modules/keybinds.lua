@@ -9,7 +9,7 @@ local fileManager = "yazi"
 
 -- 1. Applications
 hl.bind(mod .. " + Q", hl.dsp.exec_cmd(vars.app(terminal)), { description = "Terminal" })
-hl.bind(mod .. " + E", hl.dsp.exec_cmd(vars.app(fileManager)), { description = "File manager" })
+hl.bind(mod .. " + E", hl.dsp.exec_cmd(vars.app(terminal .. " bash -c " .. fileManager)), { description = "File manager" })
 hl.bind(mod .. " + K", hl.dsp.exec_cmd(vars.app(terminal .. " --app-id=qalc-float -e qalc")),
     { description = "Calculator" })
 hl.bind(mod .. " + R", hl.dsp.exec_cmd(ipc .. " launcher toggle"), { description = "App launcher" })
@@ -51,6 +51,7 @@ hl.bind(mod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" 
 hl.bind(mod .. " + M", hl.dsp.exec_cmd("uwsm stop"), { description = "Logout / stop session" })
 hl.bind(mod .. " + L", hl.dsp.exec_cmd(ipc .. " lockScreen lock"), { description = "Lock screen" })
 hl.bind(mod .. " + comma", hl.dsp.exec_cmd(ipc .. " settings toggle"), { description = "Open settings" })
+hl.bind(mod .. " + SHIFT + P", hl.dsp.exec_cmd(ipc .. " sessionMenu toggle"), { description = "Open power menu" })
 
 -- 5. Panels & Shell
 hl.bind(mod .. " + W", hl.dsp.exec_cmd(ipc .. " wallpaper toggle"), { description = "Wallpaper picker" })
