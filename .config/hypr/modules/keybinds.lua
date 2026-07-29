@@ -3,7 +3,7 @@
 ---------------------
 local vars = require("modules.variables")
 local mod = "SUPER"
-local ipc = "qs -c noctalia-shell ipc call"
+local ipc = "noctalia msg "
 local terminal = "foot"
 local fileManager = "yazi"
 
@@ -12,8 +12,8 @@ hl.bind(mod .. " + Q", hl.dsp.exec_cmd(vars.app(terminal)), { description = "Ter
 hl.bind(mod .. " + E", hl.dsp.exec_cmd(vars.app(terminal .. " bash -c " .. fileManager)), { description = "File manager" })
 hl.bind(mod .. " + K", hl.dsp.exec_cmd(vars.app(terminal .. " --app-id=qalc-float -e qalc")),
     { description = "Calculator" })
-hl.bind(mod .. " + R", hl.dsp.exec_cmd(ipc .. " launcher toggle"), { description = "App launcher" })
-hl.bind(mod .. " + X", hl.dsp.exec_cmd(ipc .. " launcher clipboard"), { description = "Clipboard history" })
+hl.bind(mod .. " + R", hl.dsp.exec_cmd(ipc .. "panel-toggle launcher"), { description = "App launcher" })
+hl.bind(mod .. " + X", hl.dsp.exec_cmd(ipc .. "panel-toggle clipboard"), { description = "Clipboard history" })
 hl.bind(mod .. " + SHIFT + SPACE", hl.dsp.exec_cmd("rofi-rbw"), { description = "Password manager" })
 
 -- 2. Window management
@@ -49,45 +49,34 @@ hl.bind(mod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" 
 
 -- 4. System
 hl.bind(mod .. " + M", hl.dsp.exec_cmd("uwsm stop"), { description = "Logout / stop session" })
-hl.bind(mod .. " + L", hl.dsp.exec_cmd(ipc .. " lockScreen lock"), { description = "Lock screen" })
-hl.bind(mod .. " + comma", hl.dsp.exec_cmd(ipc .. " settings toggle"), { description = "Open settings" })
-hl.bind(mod .. " + SHIFT + P", hl.dsp.exec_cmd(ipc .. " sessionMenu toggle"), { description = "Open power menu" })
+hl.bind(mod .. " + L", hl.dsp.exec_cmd(ipc .. "session lock"), { description = "Lock screen" })
+hl.bind(mod .. " + comma", hl.dsp.exec_cmd(ipc .. "settings-toggle"), { description = "Open settings" })
+hl.bind(mod .. " + SHIFT + P", hl.dsp.exec_cmd(ipc .. "panel-toggle session"), { description = "Open power menu" })
 
 -- 5. Panels & Shell
-hl.bind(mod .. " + W", hl.dsp.exec_cmd(ipc .. " wallpaper toggle"), { description = "Wallpaper picker" })
-hl.bind(mod .. " + N", hl.dsp.exec_cmd(ipc .. " network togglePanel"), { description = "Network panel" })
-hl.bind(mod .. " + P", hl.dsp.exec_cmd(ipc .. " plugin openPanel network-manager-vpn"), { description = "VPN panel" })
-hl.bind(mod .. " + B", hl.dsp.exec_cmd(ipc .. " bluetooth togglePanel"), { description = "Bluetooth panel" })
-hl.bind(mod .. " + SHIFT + K", hl.dsp.exec_cmd(ipc .. " plugin:keybind-cheatsheet toggle"),
+hl.bind(mod .. " + W", hl.dsp.exec_cmd(ipc .. "panel-toggle wallpaper"), { description = "Wallpaper picker" })
+hl.bind(mod .. " + N", hl.dsp.exec_cmd(ipc .. "panel-toggle control-center network"), { description = "Network panel" })
+hl.bind(mod .. " + B", hl.dsp.exec_cmd(ipc .. "panel-toggle control-center bluetooth"), { description = "Bluetooth panel" })
+hl.bind(mod .. " + SHIFT + K", hl.dsp.exec_cmd(ipc .. "panel-toggle kenn/keybind-cheatsheet:cheatsheet"),
     { description = "Keybind cheatsheet" })
 
 -- 6. Media
-hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd(ipc .. " volume increase"),
+hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd(ipc .. "volume-up"),
     { locked = true, repeating = true, description = "Volume up" })
-hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd(ipc .. " volume decrease"),
+hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd(ipc .. "volume-down"),
     { locked = true, repeating = true, description = "Volume down" })
-hl.bind("XF86AudioMute", hl.dsp.exec_cmd(ipc .. " volume muteOutput"),
+hl.bind("XF86AudioMute", hl.dsp.exec_cmd(ipc .. "volume-mute"),
     { locked = true, repeating = true, description = "Mute output" })
-hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd(ipc .. " volume muteInput"),
+hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd(ipc .. "mic-mute"),
     { locked = true, repeating = true, description = "Mute microphone" })
-hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd(ipc .. " brightness increase"),
+hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd(ipc .. "brightness-up"),
     { locked = true, repeating = true, description = "Brightness up" })
-hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd(ipc .. " brightness decrease"),
+hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd(ipc .. "brightness-down"),
     { locked = true, repeating = true, description = "Brightness down" })
-hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"),
-    { locked = true, description = "Next track" })
-hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"),
-    { locked = true, description = "Play / pause" })
-hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"),
-    { locked = true, repeating = true, description = "Play / pause" })
-hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"),
-    { locked = true, description = "Previous track" })
 
 -- 7. Screenshots
-hl.bind(mod .. " + PRINT", hl.dsp.exec_cmd("grim -g \"$(slurp)\" - | wl-copy"),
+hl.bind(mod .. " + PRINT", hl.dsp.exec_cmd(ipc .. "screenshot-region"),
     { description = "Screenshot region to clipboard" })
-hl.bind(mod .. " + SHIFT + PRINT", hl.dsp.exec_cmd("grim ~/Pictures/Screenshots/$(date +'%s_grim.png')"),
-    { description = "Screenshot to file" })
 
 -- 8. Display
 hl.bind(mod .. " + SHIFT + M", hl.dsp.exec_cmd("hyprctl keyword monitor \"HDMI-A-1,preferred,auto,1,mirror,eDP-1\""),

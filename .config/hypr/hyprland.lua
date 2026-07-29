@@ -5,3 +5,6 @@ require("modules.look_and_feel")
 require("modules.misc")
 require("modules.monitors")
 require("modules.windows_workspaces")
+
+-- For Noctalia Color templates
+require("noctalia").apply_theme()

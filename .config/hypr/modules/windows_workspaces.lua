@@ -63,3 +63,15 @@ hl.window_rule({
     pin = true,
     move = "monitor_w-window_w-10 monitor_h-window_h-10",
 })
+
+hl.window_rule({
+    name = "zen-opacity",
+    match = { class = "zen", },
+    no_blur = true,
+})
+
+hl.window_rule({
+    match = { class = "dev.noctalia.Noctalia" },
+    float = true,
+    size = { 1080, 920 },
+})

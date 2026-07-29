@@ -9,6 +9,6 @@
 local vars = require("modules.variables")
 
 hl.on("hyprland.start", function()
-    hl.exec_cmd(vars.app("qs -c noctalia-shell"))
+    hl.exec_cmd(vars.app("noctalia"))
 end)
 

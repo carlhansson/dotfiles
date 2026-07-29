@@ -58,14 +58,7 @@ hl.config({
 
         blur             = {
             enabled           = true,
-            size              = 3,
-            passes            = 1,
-            vibrancy          = 0,
-            new_optimizations = true,
-            ignore_opacity    = false,
-            special           = false,
-            popups            = false,
-            xray              = false,
+            passes = 2
         },
     },
 
@@ -137,6 +130,16 @@ hl.layer_rule({
     blur_popups = false,
 })
 
+hl.layer_rule({
+  name = "noctalia",
+  match = {
+    namespace = "^noctalia-(bar-.+|notification|dock|panel|attached-panel|osd|window-switcher)$",
+  },
+  no_anim = true,
+  ignore_alpha = 0.5,
+  blur = true,
+  blur_popups = true,
+})
 -- No blur on fullscreen
 hl.window_rule({
     name = "no-blur-fullscreen",
