@@ -70,9 +70,6 @@ scale = 0.90000000596046448
     [osd.kinds]
     media = false
 
-[plugin_settings."noctalia/bitwarden"]
-server_url = "https://vault.hesperia.dev"
-
 [plugins]
 enabled = [ "kenn/keybind-cheatsheet" ]
 
@@ -170,13 +167,13 @@ directory = "/home/carl/Pictures/wallpapers"
 transition = [ "fade" ]
 
     [wallpaper.default]
-    path = "/home/carl/Pictures/wallpapers/a_lighthouse_on_a_dock_in_the_water.jpg"
+    path = "/home/carl/Pictures/wallpapers/a_mountain_with_snow_and_clouds.jpg"
 
     [wallpaper.last]
-    path = "/home/carl/Pictures/wallpapers/a_lighthouse_on_a_dock_in_the_water.jpg"
+    path = "/home/carl/Pictures/wallpapers/a_mountain_with_snow_and_clouds.jpg"
 
     [wallpaper.monitors.eDP-1]
-    path = "/home/carl/Pictures/wallpapers/a_lighthouse_on_a_dock_in_the_water.jpg"
+    path = "/home/carl/Pictures/wallpapers/a_mountain_with_snow_and_clouds.jpg"
 
 [weather]
 refresh_minutes = 10
@@ -195,6 +192,9 @@ hide_when_no_connected_device = true
 
 [widget.clock]
 scale = 0.90000000000000002
+
+[widget.control-center]
+glyph = "north-star"
 
 [widget.media]
 anchor = true
@@ -219,7 +219,6 @@ scale = 0.90000000000000002
 
 [widget.workspaces]
 active_pill_size = 2.0
-display = "none"
 inactive_pill_size = 1.2
 occupied_color = "outline"
 show_labels = false
