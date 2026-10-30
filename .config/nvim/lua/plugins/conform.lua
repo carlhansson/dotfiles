@@ -1,35 +1,22 @@
-local function gh(repo) return 'https://github.com/' .. repo end
-
--- [[ Formatting ]]
 vim.pack.add { gh 'stevearc/conform.nvim' }
 require('conform').setup {
   notify_on_error = false,
-  format_on_save = function(bufnr)
-    -- You can specify filetypes to autoformat on save here:
-    local enabled_filetypes = {
-      -- lua = true,
-      -- python = true,
-    }
-    if enabled_filetypes[vim.bo[bufnr].filetype] then
-      return { timeout_ms = 500 }
-    else
-      return nil
-    end
-  end,
+  -- Only filetypes listed in formatters_by_ft are formatted on save
+  format_on_save = { timeout_ms = 500, lsp_format = 'never' },
   default_format_opts = {
-    lsp_format = 'fallback', -- Use external formatters if configured below, otherwise use LSP formatting. Set to `false` to disable LSP formatting entirely.
+    lsp_format = 'fallback',
   },
-  -- You can also specify external formatters in here.
+  formatters = {
+    shfmt = { append_args = { '-i', '2', '-ci' } },
+  },
   formatters_by_ft = {
-    -- rust = { 'rustfmt' },
-    -- Conform can also run multiple formatters sequentially
-    -- python = { "isort", "black" },
-    --
-    -- You can use 'stop_after_first' to run the first available formatter from the list
-    -- javascript = { "prettierd", "prettier", stop_after_first = true },
+    lua = { 'stylua' },
+    yaml = { 'yamlfmt' },
+    python = { 'ruff_fix', 'ruff_organize_imports', 'ruff_format' },
+    markdown = { 'prettierd', 'prettier', stop_after_first = true },
+    sh = { 'shfmt' },
+    bash = { 'shfmt' },
   },
 }
 
 vim.keymap.set({ 'n', 'v' }, '<leader>f', function() require('conform').format { async = true } end, { desc = '[F]ormat buffer' })
-
--- vim: ts=2 sts=2 sw=2 et

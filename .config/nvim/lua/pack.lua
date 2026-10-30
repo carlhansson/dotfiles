@@ -1,9 +1,9 @@
--- [[ Intro to `vim.pack` ]]
---  To inspect plugin state and pending updates, run
---    :lua vim.pack.update(nil, { offline = true })
+--  To inspect plugin state and pending updates, run :lua vim.pack.update(nil, { offline = true })
 --
 --  To update plugins, run
 --    :lua vim.pack.update()
+
+function gh(repo) return 'https://github.com/' .. repo end
 
 local function run_build(name, cmd, cwd)
   local result = vim.system(cmd, { cwd = cwd }):wait()
@@ -31,11 +31,6 @@ vim.api.nvim_create_autocmd('PackChanged', {
       return
     end
 
-    if name == 'LuaSnip' then
-      if vim.fn.has 'win32' ~= 1 and vim.fn.executable 'make' == 1 then run_build(name, { 'make', 'install_jsregexp' }, ev.data.path) end
-      return
-    end
-
     if name == 'nvim-treesitter' then
       if not ev.data.active then vim.cmd.packadd 'nvim-treesitter' end
       vim.cmd 'TSUpdate'
@@ -43,5 +38,3 @@ vim.api.nvim_create_autocmd('PackChanged', {
     end
   end,
 })
-
--- vim: ts=2 sts=2 sw=2 et

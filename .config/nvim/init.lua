@@ -1,17 +1,8 @@
--- [[ Setting options ]]
+-- Cache compiled Lua modules for faster startup
+vim.loader.enable()
+
 require 'options'
-
--- [[ Basic Keymaps ]]
 require 'keymaps'
-
--- [[ Set up vim.pack ]]
+require 'autocmds'
 require 'pack'
-
--- [[ Configure and install plugins ]]
 require 'plugins'
-
--- [[ Healthcheck]]
-require 'health'
-
--- The line beneath this is called `modeline`. See `:help modeline`
--- vim: ts=2 sts=2 sw=2 et

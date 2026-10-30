@@ -1,8 +1,3 @@
-local function gh(repo) return 'https://github.com/' .. repo end
-
--- Here is a more advanced configuration example that passes options to `gitsigns.nvim`
---
--- See `:help gitsigns` to understand what each configuration key does.
 -- Adds git related signs to the gutter, as well as utilities for managing changes
 vim.pack.add { gh 'lewis6991/gitsigns.nvim' }
 require('gitsigns').setup {
@@ -63,5 +58,3 @@ require('gitsigns').setup {
     map({ 'o', 'x' }, 'ih', gitsigns.select_hunk)
   end,
 }
-
--- vim: ts=2 sts=2 sw=2 et
