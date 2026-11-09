@@ -2,6 +2,18 @@
 vim.pack.add { gh 'j-hui/fidget.nvim' }
 require('fidget').setup {}
 
+-- Sets the `yaml.ansible` filetype for playbooks/roles so ansiblels attaches.
+vim.pack.add { gh 'mfussenegger/nvim-ansible' }
+
+-- Configures lua_ls for editing your Neovim config and plugins
+-- (replaces the old on_init workaround).
+vim.pack.add { gh 'folke/lazydev.nvim' }
+require('lazydev').setup {
+  library = {
+    { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
+  },
+}
+
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
   callback = function(event)
@@ -29,8 +41,13 @@ vim.api.nvim_create_autocmd('LspAttach', {
       vim.api.nvim_create_autocmd('LspDetach', {
         group = vim.api.nvim_create_augroup('kickstart-lsp-detach', { clear = true }),
         callback = function(event2)
-          vim.lsp.buf.clear_references()
-          vim.api.nvim_clear_autocmds { group = 'kickstart-lsp-highlight', buffer = event2.buf }
+          -- Only clear when the detaching client is the one doing the highlighting,
+          -- so e.g. ruff detaching doesn't kill pyright's highlights.
+          local detaching = vim.lsp.get_client_by_id(event2.data.client_id)
+          if detaching and detaching:supports_method 'textDocument/documentHighlight' then
+            vim.lsp.buf.clear_references()
+            vim.api.nvim_clear_autocmds { group = 'kickstart-lsp-highlight', buffer = event2.buf }
+          end
         end,
       })
     end
@@ -43,38 +60,37 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 ---@type table<string, vim.lsp.Config>
 local servers = {
-  pyright = {},
+  pyright = {
+    settings = {
+      -- Let ruff handle import sorting
+      pyright = { disableOrganizeImports = true },
+    },
+  },
+
+  -- Fast linting + code actions; pyright still handles types and hover
+  ruff = {
+    on_init = function(client) client.server_capabilities.hoverProvider = false end,
+  },
+
   jdtls = {},
   ansiblels = {},
 
-  -- Special Lua Config, as recommended by neovim help docs
+  -- lazydev handles library/workspace setup; formatting is done by stylua via conform
   lua_ls = {
-    on_init = function(client)
-      client.server_capabilities.documentFormattingProvider = false -- Disable formatting (formatting is done by stylua)
-
-      if client.workspace_folders then
-        local path = client.workspace_folders[1].name
-        if path ~= vim.fn.stdpath 'config' and (vim.uv.fs_stat(path .. '/.luarc.json') or vim.uv.fs_stat(path .. '/.luarc.jsonc')) then return end
-      end
-
-      client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
-        runtime = {
-          version = 'LuaJIT',
-          path = { 'lua/?.lua', 'lua/?/init.lua' },
-        },
-        workspace = {
-          checkThirdParty = false,
-          library = { vim.env.VIMRUNTIME, '${3rd}/luv/library' },
-        },
-      })
-    end,
     ---@type lspconfig.settings.lua_ls
     settings = {
       Lua = {
-        format = { enable = false }, -- Disable formatting (formatting is done by stylua)
+        runtime = { version = 'LuaJIT' }, -- a project's .luarc.json still takes priority
+        format = { enable = false },
       },
     },
   },
+
+  tofu_ls = {
+    -- Neovim detects .tf as `terraform`; make sure tofu_ls attaches either way
+    filetypes = { 'terraform', 'terraform-vars', 'opentofu', 'opentofu-vars' },
+  },
+  tflint = {},
 }
 
 vim.pack.add {
@@ -94,12 +110,16 @@ require('mason-tool-installer').setup {
     'lua-language-server',
     'prettierd',
     'pyright',
+    'ruff', -- LSP + ruff_fix / ruff_organize_imports / ruff_format in conform
     'shfmt',
     'stylua',
+    'yamlfmt',
+    'tflint',
+    'tofu-ls',
   },
 }
 
 for name, server in pairs(servers) do
   vim.lsp.config(name, server)
-  vim.lsp.enable(name)
 end
+vim.lsp.enable(vim.tbl_keys(servers))

@@ -1,6 +1,7 @@
 vim.pack.add { gh 'stevearc/conform.nvim' }
 require('conform').setup {
   notify_on_error = false,
+
   -- Only filetypes listed in formatters_by_ft are formatted on save
   format_on_save = { timeout_ms = 500, lsp_format = 'never' },
   default_format_opts = {
@@ -16,6 +17,10 @@ require('conform').setup {
     markdown = { 'prettierd', 'prettier', stop_after_first = true },
     sh = { 'shfmt' },
     bash = { 'shfmt' },
+    terraform = { 'tofu_fmt' },
+    ['terraform-vars'] = { 'tofu_fmt' },
+    opentofu = { 'tofu_fmt' },
+    ['opentofu-vars'] = { 'tofu_fmt' },
   },
 }
 
