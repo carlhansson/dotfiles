@@ -1,0 +1,3 @@
+[submodule ".config/nvim"]
+	path = .config/nvim
+	url = ssh://git@git.hesperia.dev:2222/carl/nvim.git
